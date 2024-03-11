@@ -240,7 +240,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        @include('layout.menu')
+        @include('layout.admin.menu')
 
         <!--**********************************
             Sidebar end
@@ -264,7 +264,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Developed by <a href="https://dexignzone.com/" target="_blank">DexignZone</a> <span
+                <p>Copyright © Developed by <a href="https://yosibgsdr.site" target="_blank">Yosi Bagus</a> <span
                         class="current-year">2024</span></p>
             </div>
         </div>
@@ -286,36 +286,13 @@
         Main wrapper end
     ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{ asset('') }}vendor/global/global.min.js"></script>
-    <script src="{{ asset('') }}vendor/chart-js/chart.bundle.min.js"></script>
-    <script src="{{ asset('') }}vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="{{ asset('') }}vendor/apexchart/apexchart.js"></script>
+    @include('layout.admin.script');
 
-    <!-- Dashboard 1 -->
-    <script src="{{ asset('') }}js/dashboard/analytics.js"></script>
-
-    <script src="{{ asset('') }}vendor/bootstrap-datetimepicker/js/moment.js"></script>
-    <script src="{{ asset('') }}vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-
-    <script src="{{ asset('') }}vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('') }}vendor/datatables/responsive/responsive.js"></script>
-    <script src="{{ asset('') }}js/plugins-init/datatables.init.js"></script>
-
-
-    <!-- Vectormap -->
-    <script src="{{ asset('') }}js/custom.min.js"></script>
-    <script src="{{ asset('') }}js/deznav-init.js"></script>
-    <script src="{{ asset('') }}js/demo.js"></script>
-    <script src="{{ asset('') }}js/styleSwitcher.js"></script>
+    @yield('script');
 
     <script>
         (function() {
             'use strict'
-
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.querySelectorAll('.needs-validation')
 
@@ -331,7 +308,7 @@
                         form.classList.add('was-validated')
                     }, false)
                 })
-        })()
+        })();
     </script>
 
 

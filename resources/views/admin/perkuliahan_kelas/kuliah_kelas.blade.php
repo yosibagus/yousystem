@@ -35,7 +35,8 @@
                                         <td>{{ $i++ }}</td>
                                         <td>
                                             {{ $get->nama_kelas }} <br>
-                                            <a href="">Lihat Kehadiran <i class="bi bi-arrow-right"></i></a>
+                                            <a href="{{ url('kehadiran?token=' . $get->token_perkuliahan) }}">Lihat
+                                                Kehadiran <i class="bi bi-arrow-right"></i></a>
                                         </td>
                                         <td>{{ $get->nama_matakuliah }}</td>
                                         <td>

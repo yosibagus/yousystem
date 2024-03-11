@@ -62,4 +62,6 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/kuliah_kelas_tambah', [PerkulihanKelasController::class, 'tambah']);
     Route::post('/kuliah_kelas_tambah', [PerkulihanKelasController::class, 'tambah_action']);
     Route::get('/dperkuliahan', [PerkulihanKelasController::class, 'detail_perkuliahan']);
+    Route::get('/kehadiran', [PerkulihanKelasController::class, 'detail_kehadiran']);
+    Route::get('/get_data_absen', [PerkulihanKelasController::class, 'data_absensi']);
 });

@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $scan = PerkuliahanMahasiswaModel::where('mahasiswa_id', Auth::user()->id)->count();
         $tidakhadir = PerkuliahanMahasiswaModel::countHadir(0, Auth::user()->id)->count();
         $hadir = PerkuliahanMahasiswaModel::countHadir(1, Auth::user()->id)->count();
-        $prosentase = ($hadir / $scan) * 100;
+        $prosentase = $scan == 0 ? 0 : ($hadir / $scan) * 100;
         $ucapan = $this->ucapan();
 
         return view('user.dashboard', compact('perkuliahan', 'scan', 'hadir', 'tidakhadir', 'ucapan', 'prosentase'));

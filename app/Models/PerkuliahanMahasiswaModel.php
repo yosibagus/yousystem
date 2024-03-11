@@ -32,4 +32,13 @@ class PerkuliahanMahasiswaModel extends Model
 
         return $query;
     }
+
+    public static function getAbsensiMahasiswa($token)
+    {
+        $query = DB::table('perkuliahan_mahasiswa')
+            ->join('users', 'users.id', '=', 'perkuliahan_mahasiswa.mahasiswa_id')
+            ->where('perkuliahan_mahasiswa.token_perkuliahan', $token)
+            ->orderBy('perkuliahan_mahasiswa.tgl_absensi', 'desc');
+        return $query;
+    }
 }
