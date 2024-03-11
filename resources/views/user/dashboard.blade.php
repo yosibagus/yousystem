@@ -11,8 +11,8 @@
             <div class="header-content">
                 <div class="left-content">
                     <div class="info">
-                        <p class="text m-b10 mb-0">Selamat Pagi</p>
-                        <h4 class="title">{{ Auth::user()->name }}</h4>
+                        <p class="text m-b10 mb-0">{{ $ucapan }}</p>
+                        <h5 class="title">{{ substr(Auth::user()->name, 0, 19) }}..</h5>
                     </div>
                 </div>
                 <div class="mid-content"></div>
@@ -121,7 +121,7 @@
                         <div class="swiper-slide">
                             <div class="dz-categories-bx">
                                 <div class="icon-bx">
-                                    <a href="products.html">
+                                    <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="currentColor" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
                                             <path
@@ -135,15 +135,15 @@
                                     </a>
                                 </div>
                                 <div class="dz-content">
-                                    <h6 class="title"><a href="products.html">Kehadiran</a></h6>
-                                    <span class="menus text-primary">2 Scan</span>
+                                    <h6 class="title"><a href="#">Kehadiran</a></h6>
+                                    <span class="menus text-primary">{{ $hadir }} Scan</span>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="dz-categories-bx">
                                 <div class="icon-bx">
-                                    <a href="products.html">
+                                    <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
                                             <path
@@ -154,15 +154,15 @@
                                     </a>
                                 </div>
                                 <div class="dz-content">
-                                    <h6 class="title"><a href="products.html">Tidak Hadir</a></h6>
-                                    <span class="menus text-primary">0 Scan</span>
+                                    <h6 class="title"><a href="#">Tidak Hadir</a></h6>
+                                    <span class="menus text-primary">{{ $tidakhadir }} Scan</span>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="dz-categories-bx">
                                 <div class="icon-bx">
-                                    <a href="products.html">
+                                    <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="currentColor" class="bi bi-envelope-check" viewBox="0 0 16 16">
                                             <path
@@ -173,15 +173,15 @@
                                     </a>
                                 </div>
                                 <div class="dz-content">
-                                    <h6 class="title"><a href="products.html">Izin</a></h6>
-                                    <span class="menus text-primary">0 Di Izinkan</span>
+                                    <h6 class="title"><a href="#">Izin</a></h6>
+                                    <span class="menus text-primary">{{ $hadir }} Di Izinkan</span>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="dz-categories-bx">
                                 <div class="icon-bx">
-                                    <a href="products.html">
+                                    <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">
                                             <path
@@ -190,8 +190,8 @@
                                     </a>
                                 </div>
                                 <div class="dz-content">
-                                    <h6 class="title"><a href="products.html">Prosentase</a></h6>
-                                    <span class="menus text-primary">100%</span>
+                                    <h6 class="title"><a href="#">Prosentase Hadir</a></h6>
+                                    <span class="menus text-primary">{{ $prosentase }}%</span>
                                 </div>
                             </div>
                         </div>
@@ -203,31 +203,41 @@
                 <!-- Featured Beverages -->
                 <div class="title-bar">
                     <h5 class="title">Jadwal Hari Ini</h5>
-                    <a href="products.html">Lihat Semua</a>
+                    <a href="{{ url('jadwal') }}">Lihat Semua</a>
                 </div>
 
 
-                <div class="row g-3">
-                    <div class="col-12 col-sm-12">
-                        <div class="dz-wishlist-bx">
-                            <div class="dz-info">
-                                <div class="dz-head">
-                                    <h6 class="title"><a href="product-detail.html">Pertemuan 1</a>
-                                    </h6>
-                                    <p>Materi : Dasar-dasar Laravel 10</p>
+                @if ($perkuliahan != '')
+                    @foreach ($perkuliahan as $get)
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-12">
+                                <div class="dz-wishlist-bx">
+                                    <div class="dz-info">
+                                        <div class="dz-head">
+                                            <h6 class="title"><a
+                                                    href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
+                                            </h6>
+                                            <p>Materi : {{ $get->materi_perkuliahan }}</p>
+                                        </div>
+                                        <ul class="dz-meta">
+                                            <li class="price flex-1">@jam($get->tgl_perkuliahan) WIB</li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="item-bookmark active style-1">
+                                                    <i class="fi fi-rr-qrcode"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <ul class="dz-meta">
-                                    <li class="price flex-1">09:00 WIB</li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="item-bookmark active style-1">
-                                            <i class="fi fi-rr-qrcode"></i>
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="text-center mt-3">
+                        <img src="{{ asset('welcome.png') }}" alt="Tidak ada Jadwal"> <br>
+                        Tidak Ada Jadwal Perkuliahan Hari ini
                     </div>
-                </div>
+                @endif
 
                 <!-- Featured Beverages -->
             </div>

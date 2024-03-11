@@ -33,9 +33,16 @@
                                 @foreach ($perkuliahan as $get)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>{{ $get->nama_kelas }}</td>
+                                        <td>
+                                            {{ $get->nama_kelas }} <br>
+                                            <a href="">Lihat Kehadiran <i class="bi bi-arrow-right"></i></a>
+                                        </td>
                                         <td>{{ $get->nama_matakuliah }}</td>
-                                        <td>{{ $get->keterangan_perkuliahan }}</td>
+                                        <td>
+                                            <a href="{{ url('dperkuliahan?token=' . $get->token_perkuliahan) }}"
+                                                class="text-primary">{{ $get->keterangan_perkuliahan }} <i
+                                                    class="bi bi-arrow-right"></i></a>
+                                        </td>
                                         <td>{{ $get->materi_perkuliahan }}</td>
                                         <td>{{ $get->tgl_perkuliahan }}</td>
                                         <td>{{ $get->max_keterlambatan }}</td>

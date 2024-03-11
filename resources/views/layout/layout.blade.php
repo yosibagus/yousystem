@@ -37,7 +37,7 @@
     <link rel="stylesheet"
         href="{{ url('xhtml') }}/assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="{{ url('xhtml') }}/assets/css/style.css">
 
@@ -71,13 +71,19 @@
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url('xhtml') }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="{{ url('xhtml') }}/assets/js/dz.carousel.js"></script>
-    <script src="{{ url('xhtml') }}/assets/js/settings.js"></script>
-    <script src="{{ url('xhtml') }}/assets/js/custom.js"></script>
-    <script src="{{ url('xhtml') }}/index.js"></script>
+    @include('layout.script')
+
+    @yield('script')
+
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: "Good job!",
+                text: "{{ session('success') }}",
+                icon: "success"
+            });
+        </script>
+    @endif
 </body>
 
 </html>

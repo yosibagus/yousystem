@@ -42,4 +42,11 @@ class PerkulihanKelasController extends Controller
         PerkuliahanKelasModel::create($data);
         return redirect('perkuliahan_kelas')->with('success', 'Data Perkuliahan Berhasil Disimpan');
     }
+
+    public function detail_perkuliahan()
+    { 
+        $token = $_GET['token'];
+        $detail = PerkuliahanKelasModel::getDetailPerkuliahan($token)->first();
+        return view('admin.perkuliahan_kelas.kuliah_kelas_detail', compact('detail'));
+    }
 }

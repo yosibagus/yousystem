@@ -23,5 +23,13 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('active', function ($expression) {
             return "<?php echo request()->is($expression) ? 'active' : ''; ?>";
         });
+
+        Blade::directive('tanggal', function ($tgl) {
+            return "<?php echo date('d-m-Y', strtotime($tgl)) ?>";
+        });
+
+        Blade::directive('jam', function ($jam) {
+            return "<?php echo date('H:i', strtotime($jam)) ?>";
+        });
     }
 }

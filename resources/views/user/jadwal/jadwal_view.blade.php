@@ -31,12 +31,13 @@
                             <div class="dz-wishlist-bx">
                                 <div class="dz-info p-0">
                                     <div class="dz-head">
-                                        <h6 class="title"><a href="product-detail.html">Pertemuan 1</a>
+                                        <h6 class="title"><a
+                                                href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
                                         </h6>
-                                        <p>Materi : Dasar-dasar Laravel 10</p>
+                                        <p>Materi : {{ $get->materi_perkuliahan }}</p>
                                     </div>
                                     <ul class="dz-meta">
-                                        <li class="price flex-1">09:00 WIB</li>
+                                        <li class="price flex-1">@tanggal($get->tgl_perkuliahan) @jam($get->tgl_perkuliahan) WIB</li>
                                         <li>
                                             <a href="javascript:void(0);" class="item-bookmark active style-1">
                                                 <i class="fi fi-rr-qrcode"></i>
