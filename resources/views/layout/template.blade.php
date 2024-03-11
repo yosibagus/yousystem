@@ -15,8 +15,7 @@
 
     <meta name="description" content="Yousystem">
 
-    <meta property="og:title"
-        content="YashAdmin -Sales Management System Admin Dashboard Bootstrap HTML Template | DexignZone">
+    <meta property="og:title" content="Yousystem Administrator">
     <meta property="og:description" content="Yousystem">
     <meta property="og:image" content="social-image.png">
 
@@ -41,6 +40,7 @@
     <link href="{{ asset('') }}vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Style css -->
     <link class="main-css" href="{{ asset('') }}css/style.css" rel="stylesheet">
@@ -101,7 +101,7 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="dashboard_bar">
-                                Admin
+                                {{ Auth::user()->asprak == 1 ? 'Asisten Praktikum' : 'Administrator' }}
                             </div>
                         </div>
                         <div class="header-right d-flex align-items-center">
@@ -161,7 +161,9 @@
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             <div class="header-info2 d-flex align-items-center">
                                                 <div class="header-media">
-                                                    <img src="images/user.jpg" alt="">
+                                                    <img width="30"
+                                                        src="https://static.vecteezy.com/system/resources/previews/024/983/914/non_2x/simple-user-default-icon-free-png.png"
+                                                        alt="">
                                                 </div>
                                             </div>
                                         </a>
@@ -169,11 +171,12 @@
                                             <div class="card border-0 mb-0">
                                                 <div class="card-header py-2">
                                                     <div class="products">
-                                                        <img src="images/user.jpg" class="avatar avatar-md"
-                                                            alt="">
+                                                        <img width="30"
+                                                            src="https://static.vecteezy.com/system/resources/previews/024/983/914/non_2x/simple-user-default-icon-free-png.png"
+                                                            class="avatar avatar-md" alt="">
                                                         <div>
-                                                            <h6>Hanuman Prajapati</h6>
-                                                            <span>Web Designer</span>
+                                                            <h6>{{ Auth::user()->name }}</h6>
+                                                            <span>{{ Auth::user()->asprak == 1 ? 'Asisten Praktikum' : 'Administrator' }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -209,7 +212,7 @@
 
                                                         <span class="ms-2">Settings </span>
                                                     </a>
-                                                    <a href="page-login.html" class="dropdown-item ai-icon">
+                                                    <a href="{{ url('logout') }}" class="dropdown-item ai-icon">
                                                         <svg class="logout-svg" xmlns="http://www.w3.org/2000/svg"
                                                             width="18" height="18" viewBox="0 0 24 24"
                                                             fill="none" stroke="currentColor" stroke-width="2"

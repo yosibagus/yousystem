@@ -42,7 +42,7 @@ Route::middleware(['auth', 'user_akses:1'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index']);
     Route::get('/jadwal', [JadwalController::class, 'index']);
     Route::get('/profil', [ProfileController::class, 'index']);
-    
+
     Route::get('/scan/{id}', [ScanKehadiranController::class, 'index']);
     Route::post('/postscan', [ScanKehadiranController::class, 'scanpost']);
 });
@@ -58,10 +58,14 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/matkul', [MatkulController::class, 'index']);
     Route::get('/akun', [AkunController::class, 'index']);
 
+    Route::get('/asisten', [AkunController::class, 'asisten']);
+    Route::post('/asisten', [AkunController::class, 'asisten_action']);
+
     Route::get('/perkuliahan_kelas', [PerkulihanKelasController::class, 'index']);
     Route::get('/kuliah_kelas_tambah', [PerkulihanKelasController::class, 'tambah']);
     Route::post('/kuliah_kelas_tambah', [PerkulihanKelasController::class, 'tambah_action']);
     Route::get('/dperkuliahan', [PerkulihanKelasController::class, 'detail_perkuliahan']);
     Route::get('/kehadiran', [PerkulihanKelasController::class, 'detail_kehadiran']);
     Route::get('/get_data_absen', [PerkulihanKelasController::class, 'data_absensi']);
+    Route::get('/get_data_detail', [PerkulihanKelasController::class, 'get_detail_kuliah']);
 });

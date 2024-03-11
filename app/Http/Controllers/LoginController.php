@@ -30,7 +30,11 @@ class LoginController extends Controller
         if (Auth::attempt($login)) {
 
             if (Auth::user()->role == 1) {
-                return redirect('/home');
+                if (Auth::user()->asparak == 1) {
+                    return redirect('/')->with('success');
+                } else {
+                    return redirect('/home');
+                }
             } else {
                 return redirect('/admin');
             }

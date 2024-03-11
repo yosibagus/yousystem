@@ -25,7 +25,7 @@
     <!-- Favicons Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.png') }}">
 
-    <!-- Globle Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" class="main-css" type="text/css" href="{{ asset('xhtml') }}/assets/css/style.css">
@@ -110,8 +110,6 @@
             </div>
         </main>
         <!-- Main Content End  -->
-
-
     </div>
     <!--**********************************
     Scripts
@@ -122,6 +120,44 @@
     <script src="{{ asset('xhtml') }}/assets/js/dz.carousel.js"></script><!-- Swiper -->
     <script src="{{ asset('xhtml') }}/assets/js/settings.js"></script>
     <script src="{{ asset('xhtml') }}/assets/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+    @if (Session::has('success'))
+        <script>
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your imaginary file is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+        </script>
+    @endif
 </body>
 
 </html>

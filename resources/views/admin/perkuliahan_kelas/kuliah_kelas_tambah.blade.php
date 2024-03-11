@@ -9,15 +9,17 @@
                     <form class="needs-validation" novalidate method="POST" action="">
                         @csrf
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xl-4">
                                 <div class="mb-3 form-group">
                                     <label class="col-lg-4 col-form-label" for="kelas_id">Pilih Kelas
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <select class="default-select wide form-control" id="kelas_id" name="kelas_id">
-                                        <option data-display="Select" value="">Please select</option>
+                                    <select id="kelas_id" name="kelas_id">
+                                        <option value="">Please select</option>
                                         @foreach ($kelas as $get)
-                                            <option value="{{ $get->id_kelas }}">{{ $get->nama_kelas }}</option>
+                                            <option value="{{ $get->id_kelas }}">{{ $get->angkatan }} -
+                                                {{ $get->nama_kelas }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">
@@ -25,17 +27,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-4">
                                 <div class="mb-3 form-group">
                                     <label class="col-lg-4 col-form-label" for="matkul_id">Pilih Matakuliah
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <select class="default-select wide form-control" id="matkul_id" name="matkul_id">
-                                        <option value="" data-display="Select">Please select</option>
+                                    <select id="matkul_id" name="matkul_id">
+                                        <option value="">Please select</option>
                                         @foreach ($matakuliah as $get)
                                             <option value="{{ $get->id_matkul }}">{{ $get->nama_matakuliah }}</option>
                                         @endforeach
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Please select a one.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="mb-3 form-group">
+                                    <label class="col-lg-12 col-form-label" for="asprak_id">Pilih Asisten Praktikum
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    @if (Auth::user()->asprak == 2)
+                                        <select class="" id="asprak" name="asprak_id">
+                                            <option value="">Please select</option>
+                                            @foreach ($asprak as $get)
+                                                <option value="{{ $get->id }}">{{ $get->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <select name="" id="asprak" disabled>
+                                            <option value="a" selected>{{ Auth::user()->name }}</option>
+                                        </select>
+                                    @endif
                                     <div class="invalid-feedback">
                                         Please select a one.
                                     </div>
@@ -103,4 +128,23 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#asprak').select2({
+                placeholder: 'Pilih Asisten Praktikum',
+                allowClear: true
+            });
+            $('#matkul_id').select2({
+                placeholder: 'Pilih Matakuliah',
+                allowClear: true
+            });
+            $('#kelas_id').select2({
+                placeholder: 'Pilih Kelas',
+                allowClear: true
+            });
+        });
+    </script>
 @endsection

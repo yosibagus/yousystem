@@ -23,3 +23,4 @@
 <script src="{{ asset('') }}js/deznav-init.js"></script>
 <script src="{{ asset('') }}js/demo.js"></script>
 <script src="{{ asset('') }}js/styleSwitcher.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>

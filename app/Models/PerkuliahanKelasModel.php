@@ -12,11 +12,14 @@ class PerkuliahanKelasModel extends Model
     protected $table = "perkuliahan_kelas";
     protected $guarded = [];
 
-    public static function getAllPerkuliahan()
+    public static function getAllPerkuliahan($id = null)
     {
         $query = DB::table('perkuliahan_kelas')
             ->join('master_matkul', 'master_matkul.id_matkul', '=', 'perkuliahan_kelas.matakuliah_id')
             ->join('master_kelas', 'master_kelas.id_kelas', '=', 'perkuliahan_kelas.kelas_id');
+        if (!empty($id)) {
+            $query->where('perkuliahan_kelas.asprak_id', $id);
+        }
         return $query;
     }
 
@@ -47,10 +50,5 @@ class PerkuliahanKelasModel extends Model
             ->where('perkuliahan_kelas.kelas_id', $id_kelas)
             ->whereDate('perkuliahan_kelas.tgl_perkuliahan', $now);
         return $query;
-    }
-
-    public static function cekKelas($id_kelas, $iduser)
-    { 
-        
     }
 }

@@ -7,14 +7,21 @@ use App\Models\KelasModel;
 use App\Models\MatkulModel;
 use App\Models\PerkuliahanKelasModel;
 use App\Models\PerkuliahanMahasiswaModel;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PerkulihanKelasController extends Controller
 {
     public function index()
     {
-        $perkuliahan = PerkuliahanKelasModel::getAllPerkuliahan()->get();
+        $id = Auth::user()->id;
+        if (Auth::user()->asprak == 1) {
+            $perkuliahan = PerkuliahanKelasModel::getAllPerkuliahan($id)->get();
+        } else {
+            $perkuliahan = PerkuliahanKelasModel::getAllPerkuliahan()->get();
+        }
         return view('admin.perkuliahan_kelas.kuliah_kelas', compact('perkuliahan'));
     }
 
@@ -22,7 +29,8 @@ class PerkulihanKelasController extends Controller
     {
         $data = [
             'kelas' => KelasModel::all(),
-            'matakuliah' => MatkulModel::all()
+            'matakuliah' => MatkulModel::all(),
+            'asprak' => User::where('asprak', 1)->get()
         ];
         return view('admin.perkuliahan_kelas.kuliah_kelas_tambah', $data);
     }
@@ -30,10 +38,12 @@ class PerkulihanKelasController extends Controller
     public function tambah_action(Request $request)
     {
         $token = Str::random(12);
+        $asprak = Auth::user()->asprak == 2 ? $request->asprak_id : Auth::user()->id;
         $data = [
             'token_perkuliahan' => $token,
             'kelas_id' => $request->kelas_id,
             'matakuliah_id' => $request->matkul_id,
+            'asprak_id' => $asprak,
             'tgl_perkuliahan' => $request->tgl_perkuliahan,
             'max_keterlambatan' => $request->max_keterlambatan,
             'keterangan_perkuliahan' => $request->keterangan_perkuliahan,
@@ -54,9 +64,7 @@ class PerkulihanKelasController extends Controller
     public function detail_kehadiran()
     {
         $token = $_GET['token'];
-
         $detail = PerkuliahanKelasModel::getDetailPerkuliahan($token)->first();
-
         return view('admin.perkuliahan_kelas.kehadiran', compact('detail'));
     }
 
@@ -104,5 +112,21 @@ class PerkulihanKelasController extends Controller
         }
 
         return $distanceValue;
+    }
+
+    public function get_detail_kuliah()
+    {
+        $token = $_GET['token'];
+        $absensi = PerkuliahanMahasiswaModel::getAbsensiMahasiswa($token)->count();
+        $perkuliahan = PerkuliahanKelasModel::getDetailPerkuliahan($token)->first();
+
+        $mhs = User::where('kelas_id', $perkuliahan->kelas_id)->count();
+
+        $data = [
+            'absensi' => $absensi,
+            'mhs'=> ($mhs - $absensi)
+        ];
+
+        echo json_encode($data);
     }
 }

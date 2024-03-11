@@ -2,14 +2,45 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            <div class="card dz-card" id="accordion-six">
-                <div class="card-header flex-wrap d-flex justify-content-between">
-                    <div>
-                        <h4 class="card-title">{{ $detail->nama_kelas }} - {{ $detail->materi_perkuliahan }}</h4>
+
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row task">
+                        <div class="col-xl-6 col-sm-12 col-12">
+                            <div class="task-summary">
+                                <div class="d-flex align-items-baseline">
+                                    <h2 class="text-primary count">{{ $detail->nama_kelas }}</h2>
+                                    <span>Class</span>
+                                </div>
+                                <p>{{ $detail->keterangan_perkuliahan . ' - ' . $detail->materi_perkuliahan }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-6">
+                            <div class="task-summary">
+                                <div class="d-flex align-items-baseline">
+                                    <h2 class="text-success count" id="kehadiran">0</h2>
+                                    <span>Mahasiswa</span>
+                                </div>
+                                <p>Scan Kehadiran</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-6">
+                            <div class="task-summary">
+                                <div class="d-flex align-items-baseline">
+                                    <h2 class="text-warning count" id="mhs">35</h2>
+                                    <span>Mahasiswa</span>
+                                </div>
+                                <p>Belum Scan Kehadiran</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="col-md-12">
+            <div class="card dz-card" id="accordion-six">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered w-100">
@@ -41,6 +72,7 @@
         function selesai() {
             setTimeout(function() {
                 update();
+                detail();
                 selesai();
             }, 1000);
         }
@@ -52,6 +84,18 @@
                 dataType: "html",
                 success: function(data) {
                     $("#tmp-mhs").html(data);
+                }
+            })
+        }
+
+        function detail() {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('get_data_detail?token=' . $_GET['token']) }}",
+                dataType: 'json',
+                success: function(data) {
+                    $("#kehadiran").html(data.absensi);
+                    $("#mhs").html(data.mhs);
                 }
             })
         }
