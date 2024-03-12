@@ -33,8 +33,6 @@
 
     <link href="{{ asset('') }}vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="{{ asset('') }}vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-        href="{{ asset('') }}cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css">
     <link href="{{ asset('') }}vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('') }}cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('') }}vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
@@ -52,11 +50,11 @@
     <!--*******************
         Preloader start
     ********************-->
-    {{-- <div id="preloader">
+    <div id="preloader">
         <div>
             <img src="images/pre.gif" alt="">
         </div>
-    </div> --}}
+    </div>
     <!--*******************
         Preloader end
     ********************-->

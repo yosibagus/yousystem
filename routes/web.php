@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\JadwalController;
 use App\Http\Controllers\user\ProfileController;
+use App\Http\Controllers\user\RekapKehadiranController;
 use App\Http\Controllers\user\ScanKehadiranController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,8 @@ Route::middleware(['auth', 'user_akses:1'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index']);
     Route::get('/jadwal', [JadwalController::class, 'index']);
     Route::get('/profil', [ProfileController::class, 'index']);
+
+    Route::get('/rekap-kehadiran', [RekapKehadiranController::class, 'index']);
 
     Route::get('/scan/{id}', [ScanKehadiranController::class, 'index']);
     Route::post('/postscan', [ScanKehadiranController::class, 'scanpost']);

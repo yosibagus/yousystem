@@ -12,7 +12,7 @@
     </div>
     <ul class="nav navbar-nav">
         <li>
-            <a class="nav-link active" href="index.html">
+            <a class="nav-link @active('home')" href="{{ url('home') }}">
                 <span class="dz-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@
             </a>
         </li>
         <li>
-            <a class="nav-link" href="my-order.html">
+            <a class="nav-link @active('rekap-kehadiran')" href="{{ url('rekap-kehadiran') }}">
                 <span class="dz-icon">
                     <i class="fi fi-rr-qrcode"></i>
                 </span>
@@ -33,7 +33,7 @@
             </a>
         </li>
         <li>
-            <a class="nav-link" href="my-order.html">
+            <a class="nav-link @active('rekap-izin')" href="{{ url('rekap-izin') }}">
                 <span class="dz-icon">
                     <i class="fi fi-rr-envelope"></i>
                 </span>
@@ -41,7 +41,7 @@
             </a>
         </li>
         <li>
-            <a class="nav-link" href="{{ url('profil') }}">
+            <a class="nav-link @active('profil')" href="{{ url('profil') }}">
                 <span class="dz-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

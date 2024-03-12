@@ -18,7 +18,7 @@
                 <div class="mid-content"></div>
                 <div class="right-content d-flex align-items-center gap-4">
                     <a href="https://yosibgsdr.site/" class="">
-                        <img src="https://yosibgsdr.site/img/fedalon_logo.png" width="40" alt="">
+                        <img src="{{ asset('logo.png') }}" width="40" alt="">
                     </a>
                     <a href="javascript:void(0);" class="icon dz-floating-toggler">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

@@ -1,5 +1,4 @@
 @extends('layout.layout')
-
 @section('sidebar')
     @include('user.sidebar')
 @endsection
@@ -10,10 +9,9 @@
             <div class="header-content">
                 <div class="left-content">
                     <div class="dz-head-items">
-                        <h5 class="title mb-0">Jadwal</h5>
+                        <h5 class="title mb-0">Rekapitulasi Kehadiran</h5>
                         <ul class="dz-meta">
-                            <li class="dz-item">Lihat <a href="{{ url('rekap-kehadiran') }}" class="text-success">Rekapitulasi
-                                    Absensi <i class="bi bi-arrow-right"></i></a> </li>
+                            <li class="dz-item">Lihat laporan kehadiran Anda.</li>
                         </ul>
                     </div>
                 </div>
@@ -32,22 +30,31 @@
         </header>
         <main class="page-content space-top p-b60">
             <div class="container">
-                @if ($jadwal->count() > 0)
-                    @foreach ($jadwal->get() as $get)
+                @if ($rekap->count() > 0)
+                    @foreach ($rekap->get() as $get)
                         <div class="row g-3 mb-3">
                             <div class="col-12 col-sm-12">
                                 <div class="dz-wishlist-bx">
                                     <div class="dz-info p-0">
                                         <div class="dz-head">
-                                            <h6 class="title"><a href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
+                                            <h6 class="title"><a
+                                                    href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
                                             </h6>
                                             <p>Materi : {{ $get->materi_perkuliahan }}</p>
                                         </div>
                                         <ul class="dz-meta">
-                                            <li class="price flex-1">@tanggal($get->tgl_perkuliahan) @jam($get->tgl_perkuliahan) WIB</li>
+                                            <li class="price flex-1">
+                                                <small>Jadwal Praktikum : @tanggal($get->tgl_perkuliahan) @jam($get->tgl_perkuliahan) WIB</small>
+                                                <small>Tanggal Absensi &nbsp;&nbsp;: @tanggal($get->tgl_absensi) @jam($get->tgl_absensi)
+                                                    WIB</small>
+                                            </li>
                                             <li>
-                                                <a href="" class="item-bookmark active style-1">
-                                                    <i class="fi fi-rr-qrcode"></i>
+                                                <a href="#" class="item-bookmark text-success style-1">
+                                                    @if ($get->status_kehadiran == 0)
+                                                        <span class="badge badge-danger">Tidak Hadir</span>
+                                                    @else
+                                                        <span class="badge badge-primary">Hadir</span>
+                                                    @endif
                                                 </a>
                                             </li>
                                         </ul>

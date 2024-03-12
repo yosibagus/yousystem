@@ -27,19 +27,19 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
 
     <!-- Favicons Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url('xhtml') }}/assets/images/app-logo/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.png') }}">
 
     <!-- PWA Version -->
     {{-- <link rel="manifest" href="manifest.json"> --}}
 
     <!-- Global CSS -->
-    <link href="{{ url('xhtml') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="{{ asset('xhtml') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link rel="stylesheet"
-        href="{{ url('xhtml') }}/assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
+        href="{{ asset('xhtml') }}/assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{{ url('xhtml') }}/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('xhtml') }}/assets/css/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
