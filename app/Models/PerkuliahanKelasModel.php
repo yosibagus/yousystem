@@ -38,7 +38,8 @@ class PerkuliahanKelasModel extends Model
         $query = DB::table('perkuliahan_kelas')
             ->join('master_matkul', 'master_matkul.id_matkul', '=', 'perkuliahan_kelas.matakuliah_id')
             ->join('master_kelas', 'master_kelas.id_kelas', '=', 'perkuliahan_kelas.kelas_id')
-            ->where('perkuliahan_kelas.kelas_id', $id_kelas);
+            ->where('perkuliahan_kelas.kelas_id', $id_kelas)
+            ->orderBy('perkuliahan_kelas.tgl_perkuliahan', 'desc');
         return $query;
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\MatkulController;
 use App\Http\Controllers\admin\PerkulihanKelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\IzinController;
 use App\Http\Controllers\user\JadwalController;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\RekapKehadiranController;
@@ -43,6 +44,10 @@ Route::middleware(['auth', 'user_akses:1'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index']);
     Route::get('/jadwal', [JadwalController::class, 'index']);
     Route::get('/profil', [ProfileController::class, 'index']);
+
+    Route::get('/izin-perkuliahan', [IzinController::class, 'index']);
+    Route::post('/izin-perkuliahan', [IzinController::class, 'tambah_action']);
+    Route::get('/rekap-izin', [IzinController::class, 'izin']);
 
     Route::get('/rekap-kehadiran', [RekapKehadiranController::class, 'index']);
 

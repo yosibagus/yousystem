@@ -42,26 +42,27 @@
                         <div class="swiper-slide">
                             <div class="dz-card-overlay style-1">
                                 <div class="dz-media" style="text-align: center;">
-                                    <a href="product-detail.html">
+                                    <a href="https://id.wikipedia.org/wiki/Laravel">
                                         <img src="{{ url('xhtml') }}/assets/images/featured/laravel.png"
                                             style="width: 100px;" alt="image">
                                     </a>
                                 </div>
                                 <div class="dz-info">
-                                    <h6 class="title"><a href="product-detail.html">Apa itu laravel?</a></h6>
+                                    <h6 class="title"><a href="https://id.wikipedia.org/wiki/Laravel">Apa itu laravel?</a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="dz-card-overlay style-1">
                                 <div class="dz-media" style="text-align: center;">
-                                    <a href="product-detail.html">
+                                    <a href="https://id.wikipedia.org/wiki/Bootstrap_(kerangka_kerja)">
                                         <img src="{{ url('xhtml') }}/assets/images/featured/boot.png" style="width: 100px;"
                                             alt="image">
                                     </a>
                                 </div>
                                 <div class="dz-info">
-                                    <h6 class="title"><a href="product-detail.html">Framework CSS</a></h6>
+                                    <h6 class="title"><a href="https://id.wikipedia.org/wiki/Bootstrap_(kerangka_kerja)">Framework CSS</a></h6>
 
                                 </div>
                             </div>
@@ -69,13 +70,13 @@
                         <div class="swiper-slide">
                             <div class="dz-card-overlay style-1">
                                 <div class="dz-media" style="text-align: center;">
-                                    <a href="product-detail.html">
+                                    <a href="https://id.wikipedia.org/wiki/HTML">
                                         <img src="{{ url('xhtml') }}/assets/images/featured/html.png" style="width: 100px;"
                                             alt="image">
                                     </a>
                                 </div>
                                 <div class="dz-info">
-                                    <h6 class="title"><a href="product-detail.html">Kerangka Web</a></h6>
+                                    <h6 class="title"><a href="https://id.wikipedia.org/wiki/HTML">Kerangka Web</a></h6>
 
                                 </div>
                             </div>
@@ -83,13 +84,13 @@
                         <div class="swiper-slide">
                             <div class="dz-card-overlay style-1">
                                 <div class="dz-media" style="text-align: center;">
-                                    <a href="product-detail.html">
+                                    <a href="https://id.wikipedia.org/wiki/SQL">
                                         <img src="{{ url('xhtml') }}/assets/images/featured/sql.png" style="width: 100px;"
                                             alt="image">
                                     </a>
                                 </div>
                                 <div class="dz-info">
-                                    <h6 class="title"><a href="product-detail.html">Apa itu SQL?</a></h6>
+                                    <h6 class="title"><a href="https://id.wikipedia.org/wiki/SQL">Apa itu SQL?</a></h6>
 
                                 </div>
                             </div>
@@ -97,13 +98,13 @@
                         <div class="swiper-slide">
                             <div class="dz-card-overlay style-1">
                                 <div class="dz-media" style="text-align: center;">
-                                    <a href="product-detail.html">
+                                    <a href="https://id.wikipedia.org/wiki/Git">
                                         <img src="{{ url('xhtml') }}/assets/images/featured/git.png" style="width: 100px;"
                                             alt="image">
                                     </a>
                                 </div>
                                 <div class="dz-info">
-                                    <h6 class="title"><a href="product-detail.html">Kenalilah Git</a></h6>
+                                    <h6 class="title"><a href="https://id.wikipedia.org/wiki/Git">Kenalilah Git</a></h6>
 
                                 </div>
                             </div>
@@ -174,7 +175,7 @@
                                 </div>
                                 <div class="dz-content">
                                     <h6 class="title"><a href="#">Izin</a></h6>
-                                    <span class="menus text-primary">{{ $hadir }} Di Izinkan</span>
+                                    <span class="menus text-primary">{{ $izin }} Di Izinkan</span>
                                 </div>
                             </div>
                         </div>

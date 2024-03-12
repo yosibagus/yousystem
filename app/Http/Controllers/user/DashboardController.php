@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\PerkuliahanIzinModel;
 use App\Models\PerkuliahanKelasModel;
 use App\Models\PerkuliahanMahasiswaModel;
 use Illuminate\Http\Request;
@@ -23,9 +24,10 @@ class DashboardController extends Controller
         $tidakhadir = PerkuliahanMahasiswaModel::countHadir(0, Auth::user()->id)->count();
         $hadir = PerkuliahanMahasiswaModel::countHadir(1, Auth::user()->id)->count();
         $prosentase = $scan == 0 ? 0 : ($hadir / $scan) * 100;
+        $izin = PerkuliahanIzinModel::where('status_izin', '200')->count();
         $ucapan = $this->ucapan();
 
-        return view('user.dashboard', compact('perkuliahan', 'scan', 'hadir', 'tidakhadir', 'ucapan', 'prosentase'));
+        return view('user.dashboard', compact('perkuliahan', 'izin', 'scan', 'hadir', 'tidakhadir', 'ucapan', 'prosentase'));
     }
 
     private function ucapan()
