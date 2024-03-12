@@ -43,7 +43,10 @@ Route::middleware(['auth', 'user_akses:1'])->group(function () {
     //user
     Route::get('/home', [DashboardController::class, 'index']);
     Route::get('/jadwal', [JadwalController::class, 'index']);
+
     Route::get('/profil', [ProfileController::class, 'index']);
+    Route::get('/profil/update', [ProfileController::class, 'update']);
+    Route::post('/profil/update', [ProfileController::class, 'update_action']);
 
     Route::get('/izin-perkuliahan', [IzinController::class, 'index']);
     Route::post('/izin-perkuliahan', [IzinController::class, 'tambah_action']);

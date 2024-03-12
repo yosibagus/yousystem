@@ -22,7 +22,7 @@
                     <h4 class="title">Profil</h4>
                 </div>
                 <div class="right-content d-flex align-items-center gap-4">
-                    <a href="edit-profile.html">
+                    <a href="{{ url('profil/update') }}">
                         <svg enable-background="new 0 0 461.75 461.75" height="24" viewBox="0 0 461.75 461.75"
                             width="24" xmlns="http://www.w3.org/2000/svg">
                             <path

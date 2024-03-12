@@ -78,9 +78,21 @@
     @if (Session::has('success'))
         <script>
             Swal.fire({
-                title: "Good job!",
+                title: "Pemberitahuan",
                 text: "{{ session('success') }}",
-                icon: "success"
+                icon: "success",
+                footer: '<img src="{{ asset('logo.png') }}" width="25"> <span style="margin-left:5px;margin-top:3px;">YouSystem</span>'
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            Swal.fire({
+                title: "Gagal!",
+                text: "{{ session('error') }}",
+                icon: "error",
+                footer: '<img src="{{ asset('logo.png') }}" width="25"> <span style="margin-left:5px;margin-top:3px;">YouSystem</span>'
             });
         </script>
     @endif
