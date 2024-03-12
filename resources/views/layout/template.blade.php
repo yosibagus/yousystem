@@ -29,7 +29,7 @@
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('logo.png') }}">
 
     <link href="{{ asset('') }}vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="{{ asset('') }}vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
@@ -40,8 +40,8 @@
     <link href="{{ asset('') }}vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="{{ asset('') }}vendor/select2/css/select2.min.css">
+    <link href="{{ asset('') }}vendor/sweetalert2/sweetalert2.min.css" rel="stylesheet">
     <!-- Style css -->
     <link class="main-css" href="{{ asset('') }}css/style.css" rel="stylesheet">
 
@@ -292,6 +292,41 @@
     @include('layout.admin.script');
 
     @yield('script');
+
+    @if (Session::has('success'))
+        <script>
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                icon: "success",
+                title: "Pemberitahuan",
+                text: "{{ session('success') }}",
+                footer: '<img src="{{ asset('logo.png') }}" width="25"> <span style="margin-left:5px;margin-top:3px;">YouSystem</span>'
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                icon: "error",
+                title: "Pemberitahuan",
+                text: "{{ session('error') }}",
+                footer: '<img src="{{ asset('logo.png') }}" width="25"> <span style="margin-left:5px;margin-top:3px;">YouSystem</span>'
+            });
+        </script>
+    @endif
 
     <script>
         (function() {

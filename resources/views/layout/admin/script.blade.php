@@ -23,4 +23,7 @@
 <script src="{{ asset('') }}js/deznav-init.js"></script>
 <script src="{{ asset('') }}js/demo.js"></script>
 <script src="{{ asset('') }}js/styleSwitcher.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="{{ asset('') }}vendor/select2/js/select2.full.min.js"></script>
+<script src="{{ asset('') }}js/plugins-init/select2-init.js"></script>
+<script src="{{ asset('') }}vendor/sweetalert2/sweetalert2.min.js"></script>
+<script src="{{ asset('') }}js/plugins-init/sweetalert.init.js"></script>

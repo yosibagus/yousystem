@@ -17,6 +17,23 @@ class KelasController extends Controller
         return view('admin.kelas.kelas_view', compact('kelas'));
     }
 
+    public function tambah_action(Request $request)
+    {
+        $data = [
+            'nama_kelas' => $request->nama_kelas,
+            'angkatan' => $request->angkatan,
+            'keterangan' => $request->keterangan
+        ];
+        KelasModel::create($data);
+        return redirect('/kelas')->with('success', 'Data Berhasil Disimpan');
+    }
+
+    public function hapus($id)
+    { 
+        KelasModel::where('id_kelas', $id)->delete();
+        return redirect('/kelas')->with('error', 'Data Berhasil Dihapus');
+    }
+
     public function import()
     {
         $id = $_GET['id'];

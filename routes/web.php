@@ -52,6 +52,8 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/admin', [HomeController::class, 'index']);
 
     Route::get('/kelas', [KelasController::class, 'index']);
+    Route::post('/kelas', [KelasController::class, 'tambah_action']);
+    Route::get('/kelas/hapus/{id}', [KelasController::class, 'hapus']);
     Route::get('/import', [KelasController::class, 'import']);
     Route::post('/import_ac', [KelasController::class, 'import_action']);
 
