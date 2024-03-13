@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AkunController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\KelasController;
 use App\Http\Controllers\admin\MatkulController;
+use App\Http\Controllers\admin\PerkuliahanIzinController;
 use App\Http\Controllers\admin\PerkulihanKelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\user\DashboardController;
@@ -85,4 +86,8 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/hapus-perkuliahan/{id}', [PerkulihanKelasController::class, 'hapus_perkuliahan']);
     Route::get('/kuliah-kelas-edit', [PerkulihanKelasController::class, 'edit']);
     Route::post('/kuliah-kelas-edit-action/{id}', [PerkulihanKelasController::class, 'edit_action']);
+    
+    Route::get('/izin-perkuliahan', [PerkuliahanIzinController::class, 'index']);
+    Route::post('/verifikasi/{id}', [PerkuliahanIzinController::class, 'verifikasi']);
+
 });

@@ -85,7 +85,8 @@ class PerkulihanKelasController extends Controller
             $html .= '<td>' . $get->tgl_absensi . '</td>';
             $html .= '<td>' . $get->status_lambat . '</td>';
             $html .= '<td>' . $this->hitungJarak($destinasi) . '</td>';
-            $html .= '<td>' . $get->status_kehadiran . '</td>';
+            $status = $get->status_kehadiran == 0 ? '<span class="badge badge-xs badge-danger">Tidak Hadir</span>' : '<span class="badge badge-xs badge-success">Hadir</span>';
+            $html .= '<td>' . $status . '</td>';
             $html .= '</tr>';
         }
 
