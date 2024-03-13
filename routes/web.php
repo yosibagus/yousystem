@@ -47,6 +47,7 @@ Route::middleware(['auth', 'user_akses:1'])->group(function () {
     Route::get('/profil', [ProfileController::class, 'index']);
     Route::get('/profil/update', [ProfileController::class, 'update']);
     Route::post('/profil/update', [ProfileController::class, 'update_action']);
+    Route::post('/profil/update-password', [ProfileController::class, 'update_password']);
 
     Route::get('/izin-perkuliahan', [IzinController::class, 'index']);
     Route::post('/izin-perkuliahan', [IzinController::class, 'tambah_action']);
@@ -75,10 +76,13 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::post('/asisten', [AkunController::class, 'asisten_action']);
 
     Route::get('/perkuliahan_kelas', [PerkulihanKelasController::class, 'index']);
-    Route::get('/kuliah_kelas_tambah', [PerkulihanKelasController::class, 'tambah']);
-    Route::post('/kuliah_kelas_tambah', [PerkulihanKelasController::class, 'tambah_action']);
+    Route::get('/kuliah-kelas-tambah', [PerkulihanKelasController::class, 'tambah']);
+    Route::post('/kuliah-kelas-tambah', [PerkulihanKelasController::class, 'tambah_action']);
     Route::get('/dperkuliahan', [PerkulihanKelasController::class, 'detail_perkuliahan']);
     Route::get('/kehadiran', [PerkulihanKelasController::class, 'detail_kehadiran']);
     Route::get('/get_data_absen', [PerkulihanKelasController::class, 'data_absensi']);
     Route::get('/get_data_detail', [PerkulihanKelasController::class, 'get_detail_kuliah']);
+    Route::get('/hapus-perkuliahan/{id}', [PerkulihanKelasController::class, 'hapus_perkuliahan']);
+    Route::get('/kuliah-kelas-edit', [PerkulihanKelasController::class, 'edit']);
+    Route::post('/kuliah-kelas-edit-action/{id}', [PerkulihanKelasController::class, 'edit_action']);
 });

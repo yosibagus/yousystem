@@ -104,4 +104,12 @@ class ProfileController extends Controller
             return 0;
         }
     }
+
+    public function update_password(Request $request)
+    { 
+        $id = Auth::user()->id;
+        $password = $request->password;
+        User::where('id', $id)->update(['password' => bcrypt($password), 'hint' => $password]);
+        return redirect('/profil')->with('success', 'Password Berhasil Diperbaharui');
+    }
 }

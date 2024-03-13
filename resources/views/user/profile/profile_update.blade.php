@@ -31,17 +31,31 @@
         </header>
         <main class="page-content space-top p-b60">
             <div class="container">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-4">
-                        <label class="form-label" for="email">Email</label>
-                        <div class="input-group input-mini input-sm">
-                            <input type="text" id="email" name="email" class="form-control">
+                @if (Auth::user()->email != '')
+                    <form action="{{ url('profil/update-password') }}" method="POST">
+                        @csrf
+                        <div class="mb-4">
+                            <label class="form-label" for="password">Password Baru</label>
+                            <div class="input-group input-mini input-sm">
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-sm mt-3 btn-thin btn-primary rounded-xl w-100">Tautkan
-                        Akun</button>
-                </form>
+                        <button type="submit" class="btn btn-sm mt-3 btn-thin btn-primary rounded-xl w-100">Update
+                            Password</button>
+                    </form>
+                @else
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-4">
+                            <label class="form-label" for="email">Email</label>
+                            <div class="input-group input-mini input-sm">
+                                <input type="text" id="email" name="email" class="form-control">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-sm mt-3 btn-thin btn-primary rounded-xl w-100">Tautkan
+                            Akun</button>
+                    </form>
+                @endif
             </div>
         </main>
     </div>

@@ -16,7 +16,8 @@ class PerkuliahanKelasModel extends Model
     {
         $query = DB::table('perkuliahan_kelas')
             ->join('master_matkul', 'master_matkul.id_matkul', '=', 'perkuliahan_kelas.matakuliah_id')
-            ->join('master_kelas', 'master_kelas.id_kelas', '=', 'perkuliahan_kelas.kelas_id');
+            ->join('master_kelas', 'master_kelas.id_kelas', '=', 'perkuliahan_kelas.kelas_id')
+            ->join('users', 'users.id', '=', 'perkuliahan_kelas.asprak_id');
         if (!empty($id)) {
             $query->where('perkuliahan_kelas.asprak_id', $id);
         }

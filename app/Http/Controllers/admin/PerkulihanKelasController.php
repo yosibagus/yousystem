@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\KelasModel;
 use App\Models\MatkulModel;
+use App\Models\PerkuliahanIzinModel;
 use App\Models\PerkuliahanKelasModel;
 use App\Models\PerkuliahanMahasiswaModel;
 use App\Models\User;
@@ -124,9 +125,47 @@ class PerkulihanKelasController extends Controller
 
         $data = [
             'absensi' => $absensi,
-            'mhs'=> ($mhs - $absensi)
+            'mhs' => ($mhs - $absensi)
         ];
 
         echo json_encode($data);
+    }
+
+    public function hapus_perkuliahan($token)
+    {
+        PerkuliahanKelasModel::where('token_perkuliahan', $token)->delete();
+        PerkuliahanMahasiswaModel::where('token_perkuliahan', $token)->delete();
+        PerkuliahanIzinModel::where('token_perkuliahan', $token)->delete();
+
+        return redirect('/perkuliahan_kelas')->with('error', 'Data Perkuliahan Berhasil Dihapus');
+    }
+
+    public function edit()
+    {
+        $token = $_GET['token'];
+        $data = [
+            'kelas' => KelasModel::all(),
+            'matakuliah' => MatkulModel::all(),
+            'asprak' => User::where('asprak', 1)->get(),
+            'detail' => PerkuliahanKelasModel::getDetailPerkuliahan($token)->first()
+        ];
+        return view('admin.perkuliahan_kelas.kuliah_kelas_edit', $data);
+    }
+
+    public function edit_action(Request $request, $token)
+    {
+        $asprak = Auth::user()->asprak == 2 ? $request->asprak_id : Auth::user()->id;
+        $data = [
+            'kelas_id' => $request->kelas_id,
+            'matakuliah_id' => $request->matkul_id,
+            'asprak_id' => $asprak,
+            'tgl_perkuliahan' => $request->tgl_perkuliahan,
+            'max_keterlambatan' => $request->max_keterlambatan,
+            'keterangan_perkuliahan' => $request->keterangan_perkuliahan,
+            'materi_perkuliahan' => $request->materi_perkuliahan,
+        ];
+
+        PerkuliahanKelasModel::where('token_perkuliahan', $token)->update($data);
+        return redirect('/perkuliahan_kelas')->with('success', 'Data Perkuliahan Diperbaharui');
     }
 }
