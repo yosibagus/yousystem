@@ -71,6 +71,10 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::post('/import_ac', [KelasController::class, 'import_action']);
 
     Route::get('/matkul', [MatkulController::class, 'index']);
+    Route::post('/matkul', [MatkulController::class, 'tambah_action']);
+    Route::post('/matkul/edit/{id}', [MatkulController::class, 'edit_action']);
+    Route::get('/matkul/hapus/{id}', [MatkulController::class, 'hapus']);
+
     Route::get('/akun', [AkunController::class, 'index']);
 
     Route::get('/asisten', [AkunController::class, 'asisten']);
