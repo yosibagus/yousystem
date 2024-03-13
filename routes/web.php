@@ -76,6 +76,11 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/matkul/hapus/{id}', [MatkulController::class, 'hapus']);
 
     Route::get('/akun', [AkunController::class, 'index']);
+    Route::get('/akun-tambah', [AkunController::class, 'tambah']);
+    Route::post('/akun-tambah', [AkunController::class, 'tambah_action']);
+    Route::get('/akun-hapus/{id}', [AkunController::class, 'hapus']);
+    Route::get('/akun-edit', [AkunController::class, 'edit']);
+    Route::post('/akun-edit/{id}', [AkunController::class, 'edit_action']);
 
     Route::get('/asisten', [AkunController::class, 'asisten']);
     Route::post('/asisten', [AkunController::class, 'asisten_action']);
