@@ -50,7 +50,16 @@
                                     <td>{{ $get->nim_mahasiswa }}</td>
                                     <td>{{ $get->name }}</td>
                                     <td>{{ $get->hint }}</td>
-                                    <td></td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="{{ url('akun-edit?id=' . $get->id) }}"
+                                                class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                    class="fas fa-pencil-alt"></i></a>
+                                            <button class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal"
+                                                data-bs-target="#hapus{{ $get->id }}"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
