@@ -28,9 +28,9 @@ use function League\Flysystem\get;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('kesalahan', function () {
+    return view('welcome');
+});
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -86,8 +86,7 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/hapus-perkuliahan/{id}', [PerkulihanKelasController::class, 'hapus_perkuliahan']);
     Route::get('/kuliah-kelas-edit', [PerkulihanKelasController::class, 'edit']);
     Route::post('/kuliah-kelas-edit-action/{id}', [PerkulihanKelasController::class, 'edit_action']);
-    
+
     Route::get('/izin-perkuliahan', [PerkuliahanIzinController::class, 'index']);
     Route::post('/verifikasi/{id}', [PerkuliahanIzinController::class, 'verifikasi']);
-
 });
