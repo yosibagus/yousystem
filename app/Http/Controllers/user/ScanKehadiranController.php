@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Events\KehadiranCreated;
 use App\Http\Controllers\Controller;
 use App\Models\PerkuliahanKelasModel;
 use App\Models\PerkuliahanMahasiswaModel;
@@ -64,6 +65,7 @@ class ScanKehadiranController extends Controller
                     'status' => 1,
                     'pesan' => 'Berhasil Melakukan Absensi'
                 ];
+                $this->event_trigger($data);
             } else {
                 $pesan = [
                     'status' => 200,
@@ -78,6 +80,18 @@ class ScanKehadiranController extends Controller
         }
 
         echo json_encode($pesan);
+    }
+
+    private function event_trigger($data)
+    {
+        $event = [
+            'mhs' => Auth::user()->nim_mahasiswa . ' - ' . Auth::user()->name,
+            'tgl_absensi' => $data['tgl_absensi'],
+            'status_terlambat' => $data['status_lambat'],
+            'status_kehadiran' => $data['status_kehadiran'],
+            'radius' => 0
+        ];
+        event(new KehadiranCreated($event));
     }
 
     private function cekKeterlambatan($token)

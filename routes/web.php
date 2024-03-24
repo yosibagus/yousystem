@@ -88,7 +88,7 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
     Route::get('/perkuliahan_kelas', [PerkulihanKelasController::class, 'index']);
     Route::get('/kuliah-kelas-tambah', [PerkulihanKelasController::class, 'tambah']);
     Route::post('/kuliah-kelas-tambah', [PerkulihanKelasController::class, 'tambah_action']);
-    Route::get('/dperkuliahan', [PerkulihanKelasController::class, 'detail_perkuliahan']);
+    Route::get('/detail-perkuliahan', [PerkulihanKelasController::class, 'detail_perkuliahan']);
     Route::get('/kehadiran', [PerkulihanKelasController::class, 'detail_kehadiran']);
     Route::get('/get_data_absen', [PerkulihanKelasController::class, 'data_absensi']);
     Route::get('/get_data_detail', [PerkulihanKelasController::class, 'get_detail_kuliah']);

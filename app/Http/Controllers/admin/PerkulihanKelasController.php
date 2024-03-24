@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Events\KehadiranCreated;
 use App\Http\Controllers\Controller;
 use App\Models\KelasModel;
 use App\Models\MatkulModel;
@@ -31,7 +32,7 @@ class PerkulihanKelasController extends Controller
         $data = [
             'kelas' => KelasModel::all(),
             'matakuliah' => MatkulModel::all(),
-            'asprak' => User::where('asprak', 1)->get()
+            'asprak' => User::where('asprak', '!=', '0')->get()
         ];
         return view('admin.perkuliahan_kelas.kuliah_kelas_tambah', $data);
     }
@@ -75,12 +76,10 @@ class PerkulihanKelasController extends Controller
         $perkuliahan = PerkuliahanMahasiswaModel::getAbsensiMahasiswa($token)->get();
 
         $html = "";
-        $i = 1;
 
         foreach ($perkuliahan as $get) {
             $destinasi = $get->latitude . ',' . $get->longitude;
             $html .= '<tr>';
-            $html .= '<td>' . $i++ . '</td>';
             $html .= '<td>' . $get->nim_mahasiswa . ' - ' . $get->name . '</td>';
             $html .= '<td>' . $get->tgl_absensi . '</td>';
             $html .= '<td>' . $get->status_lambat . '</td>';
@@ -147,7 +146,7 @@ class PerkulihanKelasController extends Controller
         $data = [
             'kelas' => KelasModel::all(),
             'matakuliah' => MatkulModel::all(),
-            'asprak' => User::where('asprak', 1)->get(),
+            'asprak' => User::where('asprak', '!=', 0)->get(),
             'detail' => PerkuliahanKelasModel::getDetailPerkuliahan($token)->first()
         ];
         return view('admin.perkuliahan_kelas.kuliah_kelas_edit', $data);

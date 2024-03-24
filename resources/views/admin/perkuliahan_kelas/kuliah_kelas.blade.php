@@ -43,7 +43,7 @@
                                             <small><i class="bi bi-person"></i> {{ $get->name }}</small>
                                         </td>
                                         <td>
-                                            <a href="{{ url('dperkuliahan?token=' . $get->token_perkuliahan) }}"
+                                            <a href="{{ url('detail-perkuliahan?token=' . $get->token_perkuliahan) }}"
                                                 class="text-primary">{{ $get->keterangan_perkuliahan }} <i
                                                     class="bi bi-arrow-right"></i></a>
                                         </td>

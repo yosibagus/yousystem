@@ -46,7 +46,6 @@
                         <table class="table table-bordered w-100">
                             <thead>
                                 <tr>
-                                    <th>No</th>
                                     <th>Nama Mahasiswa</th>
                                     <th>Tanggal Absensi</th>
                                     <th>Status Keterlambatan</th>
@@ -54,7 +53,9 @@
                                     <th>Kehadiran</th>
                                 </tr>
                             </thead>
-                            <tbody id="tmp-mhs"></tbody>
+                            <tbody id="tmp-mhs">
+
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -64,7 +65,56 @@
 @endsection
 
 @section('script')
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = false;
+
+        var pusher = new Pusher('90a97b6509c74eadbb47', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('data');
+        channel.bind('kehadiran', function(data) {
+            var data = data.kehadiran;
+            const tableBody = document.getElementById('tmp-mhs');
+            const newRow = `
+                    <tr>
+                        <td>${data.mhs}</td>
+                        <td>${data.tgl_absensi}</td>
+                        <td>${data.status_terlambat}</td>
+                        <td>${data.radius}</td>
+                        <td>${data.status_kehadiran}</td>
+                    </tr>
+                `;
+            tableBody.innerHTML += newRow;
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('get_data_detail?token=' . $_GET['token']) }}",
+                dataType: 'json',
+                success: function(data) {
+                    $("#kehadiran").html(data.absensi);
+                    $("#mhs").html(data.mhs);
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ url('get_data_absen?token=' . $_GET['token']) }}",
+                dataType: "html",
+                success: function(data) {
+                    $("#tmp-mhs").html(data);
+                }
+            })
+        });
+    </script>
+
+    {{-- <script>
         $(document).ready(function() {
             selesai();
         });
@@ -99,5 +149,5 @@
                 }
             })
         }
-    </script>
+    </script> --}}
 @endsection
