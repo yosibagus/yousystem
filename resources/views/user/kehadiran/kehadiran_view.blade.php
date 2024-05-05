@@ -37,9 +37,7 @@
                                 <div class="dz-wishlist-bx">
                                     <div class="dz-info p-0">
                                         <div class="dz-head">
-                                            <h6 class="title"><a
-                                                    href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
-                                            </h6>
+                                            <h6 class="title"><span class="text-success">{{ $get->nama_matakuliah }}: </span>{{ $get->keterangan_perkuliahan }}</h6>
                                             <p>Materi : {{ $get->materi_perkuliahan }}</p>
                                         </div>
                                         <ul class="dz-meta">

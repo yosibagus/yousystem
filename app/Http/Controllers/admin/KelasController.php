@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\ImportUsers;
+use App\Jobs\ImportMhsJob;
 use App\Models\KelasModel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Queue;
 use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class KelasController extends Controller
@@ -55,7 +57,15 @@ class KelasController extends Controller
         $nama_file = $data->getClientOriginalName();
         $data->move('user', $nama_file);
 
-        FacadesExcel::import(new ImportUsers($request->id_kelas), public_path('user/' . $nama_file));
+        //queue
+        $push = [
+            'id_kelas' => $request->id_kelas,
+            'nama_file' => $nama_file
+        ];
+        
+        $job = new ImportMhsJob($push);
+        Queue::push($job);
+        
         return redirect()->back();
     }
 }

@@ -62,7 +62,9 @@
                                     </a>
                                 </div>
                                 <div class="dz-info">
-                                    <h6 class="title"><a href="https://id.wikipedia.org/wiki/Bootstrap_(kerangka_kerja)">Framework CSS</a></h6>
+                                    <h6 class="title"><a
+                                            href="https://id.wikipedia.org/wiki/Bootstrap_(kerangka_kerja)">Framework
+                                            CSS</a></h6>
 
                                 </div>
                             </div>
@@ -210,20 +212,23 @@
 
                 @if ($perkuliahan != '')
                     @foreach ($perkuliahan as $get)
-                        <div class="row g-3">
+                        <div class="row g-3 mb-3">
                             <div class="col-12 col-sm-12">
                                 <div class="dz-wishlist-bx">
                                     <div class="dz-info">
                                         <div class="dz-head">
-                                            <h6 class="title"><a
-                                                    href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
+                                            <h6 class="title">
+                                                <a href="{{ url('scan/' . $get->token_perkuliahan) }}">
+                                                    <span class="text-success">{{ $get->nama_matakuliah }}:</span> {{ $get->keterangan_perkuliahan }}
+                                                </a>
                                             </h6>
                                             <p>Materi : {{ $get->materi_perkuliahan }}</p>
                                         </div>
                                         <ul class="dz-meta">
                                             <li class="price flex-1">@jam($get->tgl_perkuliahan) WIB</li>
                                             <li>
-                                                <a href="javascript:void(0);" class="item-bookmark active style-1">
+                                                <a href="{{ url('scan/' . $get->token_perkuliahan) }}"
+                                                    class="item-bookmark active style-1">
                                                     <i class="fi fi-rr-qrcode"></i>
                                                 </a>
                                             </li>

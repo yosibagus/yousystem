@@ -41,10 +41,15 @@
                                                 WIB</small>
                                         </td>
                                         <td>{{ $get->keterangan_izin }}</td>
-                                        <td>{{ $get->file_izin }}</td>
+                                        <td><a target="_blank"
+                                                href="{{ asset('izin/' . $get->file_izin) }}">{{ $get->file_izin }}</a></td>
                                         <td>@tanggal($get->tgl_izin) @jam($get->tgl_izin) WIB</td>
                                         <td>
                                             @if ($get->status_izin == 0)
+                                                <button data-bs-toggle="modal"
+                                                    data-bs-target="#terima_izin{{ $get->id_izin }}"
+                                                    class="badge badge-sm badge-success"><i class="bi bi-check2"></i>
+                                                    Izinkan Telat</button>
                                                 <button data-bs-toggle="modal" data-bs-target="#terima{{ $get->id_izin }}"
                                                     class="badge badge-sm badge-success"><i class="bi bi-check2"></i>
                                                     Terima</button>
@@ -54,6 +59,8 @@
                                             @else
                                                 @if ($get->status_izin == 200)
                                                     <span class="text-success"><i class="bi bi-check2"></i> Diterima</span>
+                                                @elseif ($get->status_izin == 202)
+                                                    <span class="text-success"><i class="bi bi-check2"></i> Di izinkan</span>
                                                 @else
                                                     <span class="text-danger"><i class="bi bi-x-lg"></i> Ditolak</span>
                                                 @endif
@@ -61,6 +68,40 @@
                                         </td>
                                     </tr>
 
+                                    {{-- izin telat --}}
+                                    <div class="modal fade" id="terima_izin{{ $get->id_izin }}" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Terima Permohonan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Yakin ingin menerima <b>Permohonan Izin Telat</b> yang di ajukan oleh
+                                                    <b>{{ $get->name }} ?</b>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <form action="{{ url('verifikasi/202') }}" method="post">
+                                                        @csrf
+                                                        <div hidden>
+                                                            <input type="text" name="id_izin"
+                                                                value="{{ $get->id_izin }}">
+                                                            <input type="text" name="mahasiswa_id"
+                                                                value="{{ $get->mahasiswa_id }}">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-sm btn-success">Terima
+                                                            Permohonan
+                                                            Izin</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     {{-- diterima --}}
                                     <div class="modal fade" id="terima{{ $get->id_izin }}" data-bs-backdrop="static"
                                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
@@ -102,7 +143,8 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="staticBackdropLabel">Terima Permohonan</h5>
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Terima Permohonan
+                                                    </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>

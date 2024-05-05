@@ -39,7 +39,8 @@
                                     <div class="dz-info p-0">
                                         <div class="dz-head">
                                             <h6 class="title">
-                                                {{ $get->keterangan_perkuliahan }}
+                                                <span class="text-success">{{ $get->nama_matakuliah }}:
+                                                </span>{{ $get->keterangan_perkuliahan }}
                                             </h6>
                                             <p>Materi : {{ $get->keterangan_izin }}</p>
                                         </div>
@@ -49,9 +50,11 @@
                                             </li>
                                             <li>
                                                 @if ($get->status_izin == '0')
-                                                    <span class="badge badge-warning">Proses Validasi</span>
+                                                    <span class="badge badge-secondary">Proses Validasi</span>
                                                 @elseif ($get->status_izin == '200')
                                                     <span class="badge badge-success">Di Izinkan</span>
+                                                @elseif ($get->status_izin == '202')
+                                                    <span class="badge badge-warning">Di Izinkan Telat</span>
                                                 @else
                                                     <span class="badge badge-danger">Ditolak</span>
                                                 @endif

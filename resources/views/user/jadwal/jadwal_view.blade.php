@@ -41,10 +41,13 @@
                                         <div class="dz-head">
                                             <h6 class="title">
                                                 @if (date('Y-m-d') == date('Y-m-d', strtotime($get->tgl_perkuliahan)))
-                                                    <a
-                                                        href="{{ url('scan/' . $get->token_perkuliahan) }}">{{ $get->keterangan_perkuliahan }}</a>
+                                                    <a href="{{ url('scan/' . $get->token_perkuliahan) }}">
+                                                        <span class="text-success">{{ $get->nama_matakuliah }}:
+                                                        </span>{{ $get->keterangan_perkuliahan }}
+                                                    </a>
                                                 @else
-                                                    {{ $get->keterangan_perkuliahan }}
+                                                <span class="text-success">{{ $get->nama_matakuliah }}:
+                                                </span> {{ $get->keterangan_perkuliahan }}
                                                 @endif
                                             </h6>
                                             <p>Materi : {{ $get->materi_perkuliahan }}</p>
@@ -52,10 +55,13 @@
                                         <ul class="dz-meta">
                                             <li class="price flex-1">@tanggal($get->tgl_perkuliahan) @jam($get->tgl_perkuliahan) WIB</li>
                                             <li>
-                                                <a href="#"
-                                                    class="item-bookmark {{ date('Y-m-d') == date('Y-m-d', strtotime($get->tgl_perkuliahan)) ? 'active' : '' }} style-1">
-                                                    <i class="fi fi-rr-qrcode"></i>
-                                                </a>
+                                                @if (date('Y-m-d') == date('Y-m-d', strtotime($get->tgl_perkuliahan)))
+                                                    <a href="{{ url('scan/' . $get->token_perkuliahan) }}"
+                                                        class="item-bookmark {{ date('Y-m-d') == date('Y-m-d', strtotime($get->tgl_perkuliahan)) ? 'active' : '' }} style-1">
+                                                        <i class="fi fi-rr-qrcode"></i>
+                                                    </a>
+                                                @endif
+
                                             </li>
                                         </ul>
                                     </div>

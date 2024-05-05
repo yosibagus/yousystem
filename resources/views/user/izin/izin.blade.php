@@ -36,11 +36,11 @@
                     <div class="mb-4">
                         <label class="form-label" for="token_perkuliahan">Pilih Pertemuan</label>
                         <div class="input-group input-mini input-sm">
-                            <select name="token_perkuliahan" class="form-control" id="token_perkuliahan">
+                            <select name="token_perkuliahan" class="form-control" id="token_perkuliahan" required>
                                 <option value="">Pilih Pertemuan</option>
                                 @foreach ($perkuliahan as $get)
                                     <option value="{{ $get->token_perkuliahan }}">@tanggal($get->tgl_perkuliahan) -
-                                        {{ $get->materi_perkuliahan }}</option>
+                                        {{ $get->materi_perkuliahan }} ({{ $get->nama_matakuliah }})</option>
                                 @endforeach
                             </select>
                         </div>
@@ -48,13 +48,13 @@
                     <div class="mb-4">
                         <label class="form-label" for="keterangan_izin">Alasan Izin</label>
                         <div class="input-group input-mini input-sm">
-                            <textarea name="keterangan_izin" id="keterangan_izin" class="form-control" placeholder="" cols="30" rows="3"></textarea>
+                            <textarea name="keterangan_izin" id="keterangan_izin" required class="form-control" placeholder="" cols="30" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="file_izin">Lampiran</label>
                         <div class="input-group input-mini input-sm">
-                            <input type="file" id="file_izin" name="file_izin" class="form-control">
+                            <input type="file" id="file_izin" name="file_izin" class="form-control" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm mt-3 btn-thin btn-primary rounded-xl w-100">Kirim Permohonan

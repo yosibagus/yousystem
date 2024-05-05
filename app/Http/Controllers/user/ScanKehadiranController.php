@@ -4,11 +4,13 @@ namespace App\Http\Controllers\user;
 
 use App\Events\KehadiranCreated;
 use App\Http\Controllers\Controller;
+use App\Jobs\ScanJobs;
 use App\Models\PerkuliahanKelasModel;
 use App\Models\PerkuliahanMahasiswaModel;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Queue;
 
 class ScanKehadiranController extends Controller
 {
@@ -60,7 +62,6 @@ class ScanKehadiranController extends Controller
                     'longitude' => $request->longitude,
                     'lokasi' => $request->lokasi,
                 ];
-                PerkuliahanMahasiswaModel::create($data);
                 $pesan = [
                     'status' => 1,
                     'pesan' => 'Berhasil Melakukan Absensi'
@@ -82,16 +83,34 @@ class ScanKehadiranController extends Controller
         echo json_encode($pesan);
     }
 
+
     private function event_trigger($data)
     {
-        $event = [
-            'mhs' => Auth::user()->nim_mahasiswa . ' - ' . Auth::user()->name,
-            'tgl_absensi' => $data['tgl_absensi'],
-            'status_terlambat' => $data['status_lambat'],
-            'status_kehadiran' => $data['status_kehadiran'],
-            'radius' => 0
-        ];
-        event(new KehadiranCreated($event));
+        $job = new ScanJobs($data);
+        Queue::push($job);
+    }
+
+    private function hitungJarak($destinasi)
+    {
+        // $destinasi = '-7.008388269417333,113.84431298909102';
+        $origin = '-7.006672007148823,113.84435156944333'; //uniba
+
+        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=' . $origin . '&destinations=' . $destinasi . '&key=AIzaSyA1MgLuZuyqR_OGY3ob3M52N46TDBRI_9k';
+
+        // Initialize cURL session
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response, true);
+
+        if ($data['status'] == 'OK') {
+            $distanceValue = $data['rows'][0]['elements'][0]['distance']['text'];
+        } else {
+            $distanceValue = $data['status'];
+        }
+
+        return $distanceValue;
     }
 
     private function cekKeterlambatan($token)

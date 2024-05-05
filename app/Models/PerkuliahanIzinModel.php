@@ -29,6 +29,7 @@ class PerkuliahanIzinModel extends Model
     {
         $query = DB::table('perkuliahan_izin')
             ->join('perkuliahan_kelas', 'perkuliahan_kelas.token_perkuliahan', '=', 'perkuliahan_izin.token_perkuliahan')
+            ->join('master_matkul', 'master_matkul.id_matkul', '=', 'perkuliahan_kelas.matakuliah_id')
             ->join('users', 'users.id', '=', 'perkuliahan_izin.mahasiswa_id')
             ->where('perkuliahan_izin.mahasiswa_id', $id);
         return $query;

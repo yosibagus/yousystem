@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\KelasController;
 use App\Http\Controllers\admin\MatkulController;
 use App\Http\Controllers\admin\PerkuliahanIzinController;
 use App\Http\Controllers\admin\PerkulihanKelasController;
+use App\Http\Controllers\admin\RekapitulasiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\IzinController;
@@ -50,8 +51,8 @@ Route::middleware(['auth', 'user_akses:1'])->group(function () {
     Route::post('/profil/update', [ProfileController::class, 'update_action']);
     Route::post('/profil/update-password', [ProfileController::class, 'update_password']);
 
-    Route::get('/izin-perkuliahan', [IzinController::class, 'index']);
-    Route::post('/izin-perkuliahan', [IzinController::class, 'tambah_action']);
+    Route::get('/izin-kuliah', [IzinController::class, 'index']);
+    Route::post('/izin-kuliah', [IzinController::class, 'tambah_action']);
     Route::get('/rekap-izin', [IzinController::class, 'izin']);
 
     Route::get('/rekap-kehadiran', [RekapKehadiranController::class, 'index']);
@@ -98,4 +99,7 @@ Route::middleware(['auth', 'user_akses:0'])->group(function () {
 
     Route::get('/izin-perkuliahan', [PerkuliahanIzinController::class, 'index']);
     Route::post('/verifikasi/{id}', [PerkuliahanIzinController::class, 'verifikasi']);
+
+    Route::get('/rekapitulasi-perkuliahan', [RekapitulasiController::class, 'index']);
+    Route::get('/review-perkuliahan', [RekapitulasiController::class, 'review']);
 });

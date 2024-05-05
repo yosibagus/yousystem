@@ -53,4 +53,12 @@ class PerkuliahanKelasModel extends Model
             ->whereDate('perkuliahan_kelas.tgl_perkuliahan', $now);
         return $query;
     }
+
+    public static function getDataIzinMatkul($kelasid)
+    {
+        $query = DB::table('perkuliahan_kelas')
+        ->join('master_matkul', 'master_matkul.id_matkul', '=', 'perkuliahan_kelas.matakuliah_id')
+        ->where('perkuliahan_kelas.kelas_id', $kelasid);
+        return $query;
+    }
 }

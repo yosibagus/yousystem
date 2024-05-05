@@ -6,7 +6,7 @@
         <a href="{{ url('jadwal') }}" class="nav-link @active('jadwal')">
             <i class="fi fi-rr-calendar-day"></i>
         </a>
-        <a href="{{ url('izin-perkuliahan') }}" class="nav-link @active('izin-perkuliahan')">
+        <a href="{{ url('izin-kuliah') }}" class="nav-link @active('izin-kuliah')">
             <i class="fi fi-rr-envelope-plus"></i>
         </a>
         <a href="{{ url('profil') }}" class="nav-link @active('profil')">

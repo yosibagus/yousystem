@@ -12,7 +12,7 @@ class IzinController extends Controller
 {
     public function index()
     {
-        $perkuliahan = PerkuliahanKelasModel::where('kelas_id', Auth::user()->kelas_id)->get();
+        $perkuliahan = PerkuliahanKelasModel::getDataIzinMatkul(Auth::user()->kelas_id)->get();
         return view('user.izin.izin', compact('perkuliahan'));
     }
 

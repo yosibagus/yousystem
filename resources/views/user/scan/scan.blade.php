@@ -145,47 +145,65 @@
             function(result) {
                 if (!scanDone) {
                     scanDone = true;
-                    var data = {
-                        '_token': '{{ csrf_token() }}',
-                        'token_perkuliahan': result,
-                        'latitude': $("#lat").val(),
-                        'longitude': $("#long").val(),
-                        'lokasi': $("#lokasi").val()
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ url('/postscan') }}",
-                        data: data,
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.status == 1) {
-                                Swal.fire({
-                                    title: "Success!",
-                                    text: data.pesan,
-                                    icon: "success",
-                                    showCancelButton: false,
-                                    confirmButtonColor: "#3085d6",
-                                    confirmButtonText: "Oke!"
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.href="{{ url('/home') }}"
-                                    }
-                                });
-                            } else if (data.status == 200) {
-                                Swal.fire({
-                                    title: "Pemberitahuan!",
-                                    text: data.pesan,
-                                    icon: "error"
-                                });
-                            } else if (data.status == 404) {
-                                Swal.fire({
-                                    title: "Pemberitahuan!",
-                                    text: data.pesan,
-                                    icon: "error"
-                                });
+                    var lat = $("#lat").val();
+                    var long = $("#long").val();
+
+                    if (lat == '' || long == '') {
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: "Hidupkan fitur Lokasi/GPS!",
+                            icon: "error",
+                            showCancelButton: false,
+                            confirmButtonColor: "#3085d6",
+                            confirmButtonText: "Oke!"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = window.location.href;
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        var data = {
+                            '_token': '{{ csrf_token() }}',
+                            'token_perkuliahan': result,
+                            'latitude': lat,
+                            'longitude': long,
+                            'lokasi': $("#lokasi").val()
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ url('/postscan') }}",
+                            data: data,
+                            dataType: 'json',
+                            success: function(data) {
+                                if (data.status == 1) {
+                                    Swal.fire({
+                                        title: "Success!",
+                                        text: data.pesan,
+                                        icon: "success",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#3085d6",
+                                        confirmButtonText: "Oke!"
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = "{{ url('/home') }}"
+                                        }
+                                    });
+                                } else if (data.status == 200) {
+                                    Swal.fire({
+                                        title: "Pemberitahuan!",
+                                        text: data.pesan,
+                                        icon: "error"
+                                    });
+                                } else if (data.status == 404) {
+                                    Swal.fire({
+                                        title: "Pemberitahuan!",
+                                        text: data.pesan,
+                                        icon: "error"
+                                    });
+                                }
+                            }
+                        });
+                    }
                 }
             },
             function(error) {}

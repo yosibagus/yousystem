@@ -172,8 +172,8 @@
                     <span class="nav-text">Rekapitulasi</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="chart-flot.html">Kelas Perkuliahan</a></li>
-                    <li><a href="chart-morris.html">Izin Perkuliahan</a></li>
+                    <li><a href="{{ url('rekapitulasi-perkuliahan') }}">Kelas Perkuliahan</a></li>
+                    <li><a href="{{ url('rekapitulasi-izin') }}">Izin Perkuliahan</a></li>
                 </ul>
             </li>
             <li class="menu-title">PENGATURAN</li>
@@ -197,7 +197,7 @@
         <div class="copyright mt-5">
             <p>YouSystem © <span class="current-year">2024</span> All Rights
             </p>
-            <p>Made with <span class="heart"></span> by YosiBagus</p>
+            <p>Powered by YosiBagus</p>
         </div>
     </div>
 </div>

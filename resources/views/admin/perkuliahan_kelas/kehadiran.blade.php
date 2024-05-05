@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="row">
-
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
@@ -43,7 +42,7 @@
             <div class="card dz-card" id="accordion-six">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered w-100">
+                        <table class="table table-bordered w-100 mt-3">
                             <thead>
                                 <tr>
                                     <th>Nama Mahasiswa</th>
@@ -88,6 +87,7 @@
                     </tr>
                 `;
             tableBody.innerHTML += newRow;
+            $("#kehadiran").html(data.absensi);
         });
     </script>
 

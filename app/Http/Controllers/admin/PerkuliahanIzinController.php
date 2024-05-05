@@ -28,10 +28,8 @@ class PerkuliahanIzinController extends Controller
     {
         PerkuliahanIzinModel::where('id_izin', $request->id_izin)->update(['status_izin' => $status]);
         $user = User::where('id', $request->mahasiswa_id)->first();
-        $notif = $this->kirimEmail($user->email, $user->name, $status);
-        if ($notif == 1) {
-            return redirect('/izin-perkuliahan')->with('success', 'Berhasil Divalidasi');
-        }
+        $this->kirimEmail($user->email, $user->name, $status);
+        return redirect('/izin-perkuliahan')->with('success', 'Berhasil Divalidasi');
     }
 
     private function kirimEmail($email, $nama, $status)
@@ -39,6 +37,8 @@ class PerkuliahanIzinController extends Controller
 
         if ($status == 200) {
             $pesan = $nama . ", Permohonan Izin Perkuliahan anda <b>DITERIMA</b> oleh Asisten Praktikum <b>" . Auth::user()->name . "</b>. Disetujui pada tanggal " . date('d-m-Y H:i:s') . " WIB";
+        } else if ($status == '202') {
+            $pesan = $nama . ", Permohonan Izin Telat Perkuliahan anda <b>DITERIMA</b> oleh Asisten Praktikum <b>" . Auth::user()->name . "</b>. Disetujui pada tanggal " . date('d-m-Y H:i:s') . " WIB";
         } else {
             $pesan = $nama . ", Mohon Maaf Permohonan Izin Perkuliahan anda <b>DITOLAK</b> oleh Asisten Praktikum <b>" . Auth::user()->name . "</b>. Divalidasi pada tanggal " . date('d-m-Y H:i:s') . " WIB";
         }

@@ -37,7 +37,10 @@
     <link href="{{ asset('') }}cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('') }}vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('') }}vendor/select2/css/select2.min.css">
     <link href="{{ asset('') }}vendor/sweetalert2/sweetalert2.min.css" rel="stylesheet">
     <!-- Style css -->
@@ -50,11 +53,11 @@
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
+    {{-- <div id="preloader">
         <div>
             <img src="images/pre.gif" alt="">
         </div>
-    </div>
+    </div> --}}
     <!--*******************
         Preloader end
     ********************-->
